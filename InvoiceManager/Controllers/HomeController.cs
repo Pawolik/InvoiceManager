@@ -76,11 +76,13 @@ namespace InvoiceManager.Controllers
 
         private EditInvoicePositionViewModel PrepareInvoicePositionVm(InvoicePosition invoicePosition)
         {
+            var userId = User.Identity.GetUserId();
+
             return new EditInvoicePositionViewModel
             {
                 InvoicePosition = invoicePosition,
                 Heading = invoicePosition.Id == 0 ? "Dodawanie nowej pozycji" : "Pozycja",
-                Products = _productRepository.GetProducts(),
+                Products = _productRepository.GetProducts(userId),
             };
         }
         private InvoicePosition GetNewPosition(int invoiceId, int invoicePositionId)
@@ -120,7 +122,7 @@ namespace InvoiceManager.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var product = _productRepository.GetProduct(invoicePosition.ProductId);
+            var product = _productRepository.GetProduct(invoicePosition.ProductId, userId);
 
             if (!ModelState.IsValid)
             {
@@ -195,16 +197,6 @@ namespace InvoiceManager.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-
-        public ActionResult Clients()
-        {
-            return View();
-        }
-
-        public ActionResult Products()
-        {
-            return View();
-        }
+        }      
     }
 }

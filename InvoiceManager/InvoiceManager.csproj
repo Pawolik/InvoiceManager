@@ -173,9 +173,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202311212037299_init.cs" />
-    <Compile Include="Migrations\202311212037299_init.designer.cs">
-      <DependentUpon>202311212037299_init.cs</DependentUpon>
+    <Compile Include="Migrations\202311261927251_init.cs" />
+    <Compile Include="Migrations\202311261927251_init.designer.cs">
+      <DependentUpon>202311261927251_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Domains\Address.cs" />
@@ -392,7 +392,7 @@
     <Content Include="Views\Home\InvoicePosition.cshtml" />
     <Content Include="Views\Print\InvoiceTemplate.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
-    <Content Include="Views\Client\Clients.cshtml" />
+    <Content Include="Views\Client\Client.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -425,8 +425,8 @@
     <Content Include="Scripts\jquery-3.7.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202311212037299_init.resx">
-      <DependentUpon>202311212037299_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202311261927251_init.resx">
+      <DependentUpon>202311261927251_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

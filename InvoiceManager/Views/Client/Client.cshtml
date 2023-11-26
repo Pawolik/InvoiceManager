@@ -1,11 +1,12 @@
-﻿@model IEnumerable<InvoiceManager.Models.Domains.Product>
+﻿@model IEnumerable<InvoiceManager.Models.Domains.Client>
 
 
 @{
-    ViewBag.Title = "Products";
+    ViewBag.Title = "Klienci";
 }
 
-<h2>Products</h2>
+<h2>@ViewBag.Title</h2>
+
 
 @if (Model != null && Model.Any())
 {
@@ -13,19 +14,21 @@
         <thead>
             <tr>
                 <th scope="col">Nazwa</th>
-                <th scope="col">Wartość</th>
-                <th scope="col">Akcje</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in Model)
+            @foreach (var client in Model)
             {
                 <tr>
-                    <td><a href="@Url.Action("Edit", "Product", new { id = product.Id })" class="btn btn-primary btn-sm">Edytuj</a></td>
-                    <td>@product.Name</td>
-                    <td>@product.Value.ToString("C")</td>
-                    <td>                        
-                        <button class="btn btn-danger btn-sm" onclick="deleteProduct('@product.Id', this)">Usuń</button>
+                    <td>
+                        <a href="@Url.Action("Edit", "Client", new { id = client.Id })" class="btn btn-primary btn-sm">Edytuj</a>
+                    </td>
+                    <td>@client.Name</td>
+                    <td>@client.Email</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="deleteClient('@client.Id', this)">Usuń</button>
                     </td>
                 </tr>
             }
@@ -34,19 +37,22 @@
 }
 else
 {
-    <div>Brak produktów do wyświetlenia</div>
+    <div>
+        Brak klientów do wyświetlenia
+    </div>
 }
 
 @section Scripts
 {
     <script type="text/javascript">
-        function deleteProduct(id, btn) {
-            if (!confirm("Czy na pewno chcesz usunąć ten produkt?"))
+
+        function deleteClient(id, btn) {
+            if (!confirm("Czy na pewno chcesz usunąć tego klienta?"))
                 return;
 
             $.ajax({
                 type: "POST",
-                url: "@Url.Action("Delete", "Product")",
+                url: "@Url.Action("Delete", "Client")",
                 data: { id: id },
                 success: function (data) {
                     if (data.Success) {
