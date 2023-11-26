@@ -196,5 +196,15 @@ namespace InvoiceManager.Controllers
 
             return View();
         }
+
+        public ActionResult Clients()
+        {
+            return View();
+        }
+
+        public ActionResult Products()
+        {
+            return View();
+        }
     }
 }

@@ -137,8 +137,8 @@
         }
 
         function printPdf() {
-            var pdfWindow = window.open('@Url.Action("PrintInvoicePdf", "Print", new { id = Model.Invoice.Id })', '_blank')
-            pdfWindow.print();
+          var pdfWindow = window.open('@Url.Action("PrintInvoicePdf", "Print", new { id = Model.Invoice.Id })', '_blank')
+          pdfWindow.print();
         }
 
 

@@ -11,6 +11,14 @@
     Dodaj
 </button>
 
+<button class="btn btn-secondary mb-3" onclick='window.location.href="@Url.Action("Clients","Client")"'>
+    Klienci
+</button>
+
+<button class="btn btn-secondary mb-3" onclick='window.location.href="@Url.Action("Products","Product")"'>
+    Produkty
+</button>
+
 @if (Model != null && Model.Any())
 {
     <table class="table table-hover table-striped mt-3 mb-5">
