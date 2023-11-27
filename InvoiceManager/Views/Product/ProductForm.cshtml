@@ -1,0 +1,17 @@
+﻿@model InvoiceManager.Models.ViewModels.EditProductViewModel
+
+
+@{
+    ViewBag.Title = Model.Heading;
+}
+
+<h1>@Model.Heading</h1>
+
+@using (Html.BeginForm("Save", "Product", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    
+
+    <button type="submit" class="btn btn-primary mb-3">Zapisz</button>
+}

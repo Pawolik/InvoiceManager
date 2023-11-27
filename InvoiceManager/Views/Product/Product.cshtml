@@ -5,7 +5,12 @@
     ViewBag.Title = "Products";
 }
 
-<h2>Products</h2>
+<h1>Produkty</h1>
+
+<button class="btn btn-primary mb-3"
+        onclick='window.location.href="@Url.Action("Create", "Product")"'>
+    Dodaj pozycję
+</button>
 
 @if (Model != null && Model.Any())
 {

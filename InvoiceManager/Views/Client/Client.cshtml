@@ -5,8 +5,12 @@
     ViewBag.Title = "Klienci";
 }
 
-<h2>@ViewBag.Title</h2>
+<h1>@ViewBag.Title</h1>
 
+<button class="btn btn-primary mb-3"
+        onclick='window.location.href="@Url.Action("InvoicePosition","Home", new {})"'>
+    Dodaj pozycję
+</button>
 
 @if (Model != null && Model.Any())
 {

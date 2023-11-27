@@ -15,7 +15,7 @@ namespace InvoiceManager.Controllers
         private ClientRepository _clientRepository = new ClientRepository();
 
 
-        public ActionResult Index()
+        public ActionResult Client()
         {
             var userId = User.Identity.GetUserId();
             var clients = _clientRepository.GetClients(userId);
