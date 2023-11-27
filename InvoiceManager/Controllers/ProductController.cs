@@ -1,5 +1,6 @@
 ﻿using InvoiceManager.Models.Domains;
 using InvoiceManager.Models.Repositories;
+using InvoiceManager.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -13,17 +14,19 @@ namespace InvoiceManager.Controllers
     {
         private ProductRepository _productRepository = new ProductRepository();
 
-        public ActionResult Index()
+        public ActionResult Product()
         {
             var userId = User.Identity.GetUserId();
             var products = _productRepository.GetProducts(userId);
             return View(products);
         }
 
-        public ActionResult Create()
+        public Product GetNewProduct(string userId)
         {
-            var product = new Product { UserId = User.Identity.GetUserId() };
-            return View("ProductForm", product);
+            return new Product
+            {
+                UserId = userId
+            };
         }
 
         public ActionResult Edit(int id)
@@ -37,10 +40,35 @@ namespace InvoiceManager.Controllers
             return View("ProductForm", product);
         }
 
+        public ActionResult Save(int id = 0)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var invoice = id == 0 ?
+                GetNewProduct(userId) :
+                _productRepository.GetProduct(id, userId);
+
+            var vm = PrepareProductVm(invoice, userId);
+
+            return View(vm);
+        }
+
+        private EditProductViewModel PrepareProductVm(Product product, string userId)
+        {
+            return new EditProductViewModel
+            {
+                Product = product,
+                Heading = product.Id == 0 ? "Dodawanie nowego produktu" : "Produkt"
+            };
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Product product)
         {
+            var userId = User.Identity.GetUserId();
+            product.UserId = userId;
+
             if (!ModelState.IsValid)
                 return View("ProductForm", product);
 
@@ -49,7 +77,7 @@ namespace InvoiceManager.Controllers
             else
                 _productRepository.UpdateProduct(product);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Product", "Product");
         }
 
         [HttpPost]

@@ -119,13 +119,10 @@
                         Name = c.String(nullable: false, maxLength: 100),
                         Value = c.Decimal(nullable: false, precision: 18, scale: 2),
                         UserId = c.String(nullable: false, maxLength: 128),
-                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.UserId)
-                .Index(t => t.ApplicationUser_Id);
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.MethodOfPayments",
@@ -177,12 +174,11 @@
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Products", "ApplicationUser_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Products", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Invoices", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Clients", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Invoices", "MethodOfPaymentId", "dbo.MethodOfPayments");
-            DropForeignKey("dbo.Products", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.InvoicePositions", "ProductId", "dbo.Products");
             DropForeignKey("dbo.InvoicePositions", "InvoiceId", "dbo.Invoices");
             DropForeignKey("dbo.Invoices", "ClientId", "dbo.Clients");
@@ -193,7 +189,6 @@
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
-            DropIndex("dbo.Products", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Products", new[] { "UserId" });
             DropIndex("dbo.InvoicePositions", new[] { "ProductId" });
             DropIndex("dbo.InvoicePositions", new[] { "InvoiceId" });
