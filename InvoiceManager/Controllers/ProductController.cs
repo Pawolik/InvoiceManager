@@ -40,15 +40,15 @@ namespace InvoiceManager.Controllers
             return View("ProductForm", product);
         }
 
-        public ActionResult Save(int id = 0)
+        public ActionResult ProductForm(int id = 0)
         {
             var userId = User.Identity.GetUserId();
 
-            var invoice = id == 0 ?
+            var product = id == 0 ?
                 GetNewProduct(userId) :
                 _productRepository.GetProduct(id, userId);
 
-            var vm = PrepareProductVm(invoice, userId);
+            var vm = PrepareProductVm(product, userId);
 
             return View(vm);
         }

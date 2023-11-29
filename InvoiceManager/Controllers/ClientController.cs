@@ -30,13 +30,14 @@ namespace InvoiceManager.Controllers
 
         public ActionResult Edit(int id)
         {
-            var userId = User.Identity.GetUserId();
-            var client = _clientRepository.GetClient(id, userId);
+            //var userId = User.Identity.GetUserId();
+            //var client = _clientRepository.GetClient(id, userId);
 
-            if (client == null)
-                return HttpNotFound();
+            //if (client == null)
+            //    return HttpNotFound();
 
-            return View("ClientForm", client);
+            //return View("ClientForm", client);
+            return View();
         }
 
         [HttpPost]

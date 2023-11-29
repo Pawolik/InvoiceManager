@@ -27,9 +27,8 @@
             {
                 <tr>
                     <td>
-                        <a href="@Url.Action("Edit", "Client", new { id = client.Id })" class="btn btn-primary btn-sm">Edytuj</a>
+                        <a href="@Url.Action("Edit", "Client", new { id = client.Id })" class="fw-bold">@client.Name</a>
                     </td>
-                    <td>@client.Name</td>
                     <td>@client.Email</td>
                     <td>
                         <button class="btn btn-danger btn-sm" onclick="deleteClient('@client.Id', this)">Usuń</button>

@@ -8,7 +8,7 @@
 <h1>Produkty</h1>
 
 <button class="btn btn-primary mb-3"
-        onclick='window.location.href="@Url.Action("Create", "Product")"'>
+        onclick='window.location.href="@Url.Action("ProductForm", "Product")"'>
     Dodaj pozycję
 </button>
 
@@ -26,8 +26,7 @@
             @foreach (var product in Model)
             {
                 <tr>
-                    <td><a href="@Url.Action("Edit", "Product", new { id = product.Id })" class="btn btn-primary btn-sm">Edytuj</a></td>
-                    <td>@product.Name</td>
+                    <td><a href="@Url.Action("ProductForm", "Product", new { id = product.Id })" class="fw-bold">@product.Name</a></td>
                     <td>@product.Value.ToString("C")</td>
                     <td>                        
                         <button class="btn btn-danger btn-sm" onclick="deleteProduct('@product.Id', this)">Usuń</button>

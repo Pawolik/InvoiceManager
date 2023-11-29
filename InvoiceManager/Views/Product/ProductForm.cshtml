@@ -11,7 +11,45 @@
 {
     @Html.AntiForgeryToken()
 
-    
+<div class="row">
+    <div class="col-lg-6">
+        @using (Html.BeginForm("Product", "Product"))
+        {
+            //@Html.AntiForgeryToken()
 
-    <button type="submit" class="btn btn-primary mb-3">Zapisz</button>
+
+            //@Html.ValidationSummary()
+
+            if (Model.Product.Id == 0)
+            {
+                <p class="alert alert-info mt-4 mb-4">
+                    Pola Nazwa produktu oraz Wartość produktu są
+                    <strong>wymagane</strong>.
+                </p>
+            }
+
+            @Html.HiddenFor(x => x.Product.Id)
+            @Html.HiddenFor(x => x.Product.UserId)
+
+            <div class="mb-3">
+                @Html.LabelFor(x => x.Product.Name)
+                @Html.TextBoxFor(x => x.Product.Name,
+               new { @class = "form-control", autofocus = "autofocus" })
+                @Html.ValidationMessageFor(x => x.Product.Name)
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(x => x.Product.Value)
+                @Html.TextBoxFor(x => x.Product.Value,
+               new { @class = "form-control", autofocus = "autofocus" })
+                @Html.ValidationMessageFor(x => x.Product.Value)
+            </div>
+
+            <button class="btn btn-primary btn-lg mb-5" type="submit">
+                Zapisz
+            </button>
+
+        }
+    </div>
+</div>
 }
