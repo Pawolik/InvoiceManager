@@ -4,6 +4,7 @@ using InvoiceManager.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -54,10 +55,22 @@ namespace InvoiceManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Product product)
+        public ActionResult Save(Product product, string productValueString)
         {
             var userId = User.Identity.GetUserId();
             product.UserId = userId;
+
+            //if (!decimal.TryParse(productValueString, out decimal productValue))
+            //{
+            //    ModelState.AddModelError("Product.Value", "Nieprawidłowy format wartości produktu.");
+            //}
+            //else
+            //{
+            //    product.Value = productValue;
+            //}
+
+            decimal.TryParse(productValueString, out decimal productValue);
+            product.Value = productValue;
 
             if (product.Value < 0.01m ||
                 product.Value > 1000000)

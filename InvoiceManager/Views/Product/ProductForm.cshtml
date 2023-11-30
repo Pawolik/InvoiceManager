@@ -34,7 +34,7 @@
 
             <div class="mb-3">
                 @Html.LabelFor(x => x.Product.Value)
-                <input type="number" step="any" class="form-control" name="Product.Value" value="@Model.Product.Value" />
+                <input type="text" class="form-control" name="productValueString" value="@Model.Product.Value" />
                 @Html.ValidationMessageFor(x => x.Product.Value)
             </div>
 
