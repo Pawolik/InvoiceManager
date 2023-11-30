@@ -29,16 +29,6 @@ namespace InvoiceManager.Controllers
             };
         }
 
-        public ActionResult Edit(int id)
-        {
-            var userId = User.Identity.GetUserId();
-            var product = _productRepository.GetProduct(id, userId);
-
-            if (product == null)
-                return HttpNotFound();
-
-            return View("ProductForm", product);
-        }
 
         public ActionResult ProductForm(int id = 0)
         {
