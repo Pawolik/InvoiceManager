@@ -20,8 +20,7 @@ namespace InvoiceManager.Models.Domains
         [Display(Name = "Nazwa produktu")]
         public string Name { get; set; }
 
-        [Required]
-        [Range(0.01, 1000000.00, ErrorMessage = "Wartość musi być większa niż 0")]
+        [Required(ErrorMessage = "Wartość musi być większa niż 0")]
         [Display(Name = "Wartość produktu")]
         public decimal Value { get; set; }
 

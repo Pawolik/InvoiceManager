@@ -27,7 +27,7 @@
             {
                 <tr>
                     <td><a href="@Url.Action("ProductForm", "Product", new { id = product.Id })" class="fw-bold">@product.Name</a></td>
-                    <td>@product.Value.ToString("C")</td>
+                    <td>@product.Value</td>
                     <td>                        
                         <button class="btn btn-danger btn-sm" onclick="deleteProduct('@product.Id', this)">Usuń</button>
                     </td>

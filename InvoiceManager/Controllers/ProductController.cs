@@ -59,8 +59,17 @@ namespace InvoiceManager.Controllers
             var userId = User.Identity.GetUserId();
             product.UserId = userId;
 
+            if (product.Value < 0.01m ||
+                product.Value > 1000000)
+            {
+                ModelState.AddModelError("Product.Value", "Wartość musi być większa niż 0,01 i mniejsza niż 1000000");
+            }
+
             if (!ModelState.IsValid)
-                return View("ProductForm", product);
+            {
+                var vm = PrepareProductVm(product, userId);
+                return View("ProductForm", vm);
+            }
 
             if (product.Id == 0)
                 _productRepository.AddProduct(product);
